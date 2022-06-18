@@ -20,7 +20,7 @@ To test the application, copy and paste the .env file sent with the email on to 
 - Pagination implemented on the home page.
 - Search feature added to home page to search for a movie title.
 - The application is structured into components and CSS for each component is also separated.
-- The data for " most popular movies" is saved on to the localstorage so that the API doesn't get called multiple times on page refresh. The data will be fetched form the API once everyday.
+- The data for "Most popular movies" is saved on to the localstorage so that the API doesn't get called multiple times on page refresh. The data will be fetched from the API once everyday.
 
 ---
 
