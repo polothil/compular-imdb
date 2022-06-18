@@ -1,5 +1,6 @@
 import React from 'react';
 import { MovieProps } from '../Home/Home';
+import { useNavigate } from 'react-router-dom';
 import './MovieCard.css';
 
 export type MovieCardProps = {
@@ -8,8 +9,10 @@ export type MovieCardProps = {
 };
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie, desc }) => {
+  const history = useNavigate();
+
   return (
-    <div className='card'>
+    <div className='card' onClick={() => history(`/${movie.id}`)}>
       <img src={movie.image} alt='' />
       <h3 className='title'>{movie.title}</h3>
       <div className='info-column'>

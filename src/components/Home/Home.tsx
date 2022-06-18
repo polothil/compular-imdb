@@ -1,9 +1,8 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import Loader from '../Loader/Loader';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
+import Pagination from '../Pagination/Pagination';
 import './Home.css';
 
 export type MovieProps = {
@@ -22,6 +21,8 @@ const Home: React.FC = () => {
   const [filteredList, setFilteredList] = useState<MovieProps[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchStr, setSearchStr] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [moviesPerPage, setMoviesPerPage] = useState(10);
 
   useEffect(() => {
     const initialDataFetch = async () => {
@@ -32,7 +33,7 @@ const Home: React.FC = () => {
         if (movies.length === 0 || dbDate !== moviesDate) {
           setLoading(true);
           const res = await fetch(
-            'https://imdb-api.com/API/MostPopularMovies/k_nb0rn98o'
+            `https://imdb-api.com/API/MostPopularMovies/${process.env.REACT_APP_API_KEY1}`
           );
           const data = await res.json();
           console.log(data);
@@ -73,12 +74,23 @@ const Home: React.FC = () => {
   const handleSearch = (filter: string) => {
     console.log(filter);
     setSearchStr(filter);
-    setUrl(`https://imdb-api.com/en/API/Search/k_nb0rn98o/${filter}`);
+    setUrl(
+      `https://imdb-api.com/en/API/Search/${process.env.REACT_APP_API_KEY1}/${filter}`
+    );
+  };
+
+  // Pagination
+  const indexOfLastMovie = currentPage * moviesPerPage;
+  const indexOfFirstPost = indexOfLastMovie - moviesPerPage;
+  const currentMovies = movieList.slice(indexOfFirstPost, indexOfLastMovie);
+
+  const handlePagination = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
   };
 
   return (
     <div>
-      <Header filter={handleSearch} />
+      <Header filter={handleSearch} setSearchStr={setSearchStr} />
       {loading ? (
         <Loader />
       ) : (
@@ -86,7 +98,14 @@ const Home: React.FC = () => {
           {searchStr === '' ? (
             <>
               <h1>Most Popular Movies</h1>
-              <MoviesContainer movies={movieList} />
+              <MoviesContainer movies={currentMovies} />
+              <Pagination
+                moviesPerPage={moviesPerPage}
+                setMoviesPerPage={setMoviesPerPage}
+                totalMovies={movieList.length}
+                activePage={currentPage}
+                paginate={handlePagination}
+              />
             </>
           ) : (
             <>
