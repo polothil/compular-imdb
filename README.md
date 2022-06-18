@@ -1,3 +1,28 @@
+# Important!
+
+To test the application, copy and paste the .env file sent with the email on to the project root directory before starting the application. The .env file contains the API key that is used in the API calls to the IMDB API.
+
+# Instructions to test and run
+
+- Clone the repo or download as a zip file.
+- After extraction, open the repo folder in a code editor like VS Code.
+- Run "npm i" in a terminal to install all dependencies from package.json.
+- Once installation of all dependencies are completed, run "npm start".
+- This will start the app in the development mode. Open http://localhost:3000 to view it in your browser.
+
+# Feature details
+
+- Responsive app showing the most popular movies from the IMDB API.
+- React TypeScript App.
+- Navigation feature to view details of the movie by clicking the movie card shown on home page.
+- Pure CSS used for styling.
+- All components are functional components.
+- Pagination implemented on the home page.
+- Search feature added to home page to search for a movie title.
+- The application is structured into components and CSS for each component is also separated.
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
