@@ -1,0 +1,53 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  background-color: black;
+  color: white;
+  padding: 0 10px;
+  font-size: 25px;
+  font-weight: bold;
+  box-shadow: 0 3px 6px 0 #555;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 8px 0;
+}
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  background-color: white;
+  border-radius: 6px;
+  margin-left: 20px;
+  width: 50%;
+  background-color: white;
+  align-items: center;
+}
+
+.filter input {
+  border: none;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  outline: none;
+  margin-left: 5px;
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    font-size: 20px;
+    padding-bottom: 10px;
+  }
+
+  .filter {
+    width: 80%;
+    margin: auto;
+    padding: 0px;
+    font-size: 14px;
+  }
+}
