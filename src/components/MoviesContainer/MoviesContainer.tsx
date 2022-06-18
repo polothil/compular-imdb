@@ -5,7 +5,6 @@ import './MoviesContainer.css';
 
 type MoviesContainerProps = {
   movies: MovieProps[];
-
   desc?: boolean;
 };
 
